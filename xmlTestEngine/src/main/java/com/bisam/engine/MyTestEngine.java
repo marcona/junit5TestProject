@@ -8,7 +8,7 @@ import static org.junit.platform.engine.TestExecutionResult.successful;
 public class MyTestEngine implements TestEngine {
     @Override
     public String getId() {
-        return "BISAM_TEST_F";
+        return "bisam-funtional-tests";
     }
 
     @Override

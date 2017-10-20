@@ -1,4 +1,4 @@
-package com.bisam;
+package com.spike;
 
 public class DumbClass {
 

@@ -1,4 +1,4 @@
-package com.bisam.engine;
+package com.spike.engine;
 
 import org.junit.platform.engine.UniqueId;
 import org.junit.platform.engine.support.descriptor.AbstractTestDescriptor;

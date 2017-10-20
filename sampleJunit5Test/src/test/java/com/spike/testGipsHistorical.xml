@@ -470,7 +470,7 @@
                     <exec>
                         <exec>
                             <result message='ERROR'
-                                    stringifiedMessage='A technical error occurred: com.bisam.core.exception.InternalException: Treatment completed with error'/>
+                                    stringifiedMessage='A technical error occurred: com.spike.core.exception.InternalException: Treatment completed with error'/>
                             <result message='ERROR'
                                     stringifiedMessage='Missing Portfolio Return for portfolio &apos;PTF1&apos; [1] between &apos;28-Feb-2001&apos; and &apos;31-Mar-2001&apos;'/>
                             <result message='ERROR'

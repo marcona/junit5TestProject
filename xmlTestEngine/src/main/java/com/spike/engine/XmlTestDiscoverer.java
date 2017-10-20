@@ -1,4 +1,4 @@
-package com.bisam.engine;
+package com.spike.engine;
 
 import com.sun.org.apache.xerces.internal.parsers.SAXParser;
 import org.junit.platform.engine.EngineDiscoveryRequest;
@@ -26,7 +26,7 @@ class XmlTestDiscoverer {
             discoverFromFile(engineDescriptor, fileSelector.getFile());
         } else {
             //HACK on ne sait pas encore recuperer les resources depuis un package ...
-            discoverFromFile(engineDescriptor, new File("D:\\Dev\\env\\sideprojects\\junit5TestProject\\sampleJunit5Test\\src\\test\\java\\com\\bisam\\testGipsHistorical.xml"));
+            discoverFromFile(engineDescriptor, new File("D:\\Dev\\env\\sideprojects\\junit5TestProject\\sampleJunit5Test\\src\\test\\java\\com\\spike\\testGipsHistorical.xml"));
         }
         return engineDescriptor;
     }

@@ -1,4 +1,4 @@
-package com.bisam.engine;
+package com.spike.engine;
 
 import org.junit.platform.engine.*;
 
@@ -7,7 +7,7 @@ import static org.junit.platform.engine.TestExecutionResult.successful;
 public class XmlTestEngine implements TestEngine {
     @Override
     public String getId() {
-        return "bisam-funtional-tests";
+        return "xml-funtional-tests";
     }
 
     @Override

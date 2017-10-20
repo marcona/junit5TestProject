@@ -8,7 +8,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <parent>
-        <groupId>com.bisam</groupId>
+        <groupId>com.spike</groupId>
         <artifactId>junit5TestProject</artifactId>
         <version>1.0-SNAPSHOT</version>
         <relativePath>..</relativePath>

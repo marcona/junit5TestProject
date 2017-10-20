@@ -1,4 +1,4 @@
-package com.bisam;
+package com.spike;
 
 import org.junit.platform.engine.discovery.DiscoverySelectors;
 import org.junit.platform.launcher.EngineFilter;
@@ -14,17 +14,17 @@ import java.io.PrintWriter;
 /**
  * Classe utilitaire pour lancer facilement les TestEngine ET debugger
  */
-public class BisamLauncherMain {
+public class LauncherMain {
     public static void main(String[] args) {
         LauncherDiscoveryRequest request = LauncherDiscoveryRequestBuilder.request()
                 .selectors(
                         DiscoverySelectors.selectFile(
-                                "D:\\Dev\\env\\sideprojects\\junit5TestProject\\sampleJunit5Test\\src\\test\\java\\com\\bisam\\testGipsHistorical.xml")
-//                        selectPackage("com.bisam"),
+                                "D:\\Dev\\env\\sideprojects\\junit5TestProject\\sampleJunit5Test\\src\\test\\java\\com\\spike\\testGipsHistorical.xml")
+//                        selectPackage("com.spike"),
 //                        selectClass(SimpleUnitTestWithLambdaTest.class)
                 )
                 .filters(
-                        EngineFilter.includeEngines("bisam-funtional-tests"),
+                        EngineFilter.includeEngines("xml-funtional-tests"),
                         EngineFilter.excludeEngines("ice-cream-machine")
 //                        includeClassNamePatterns(".*Lambda")
                 )

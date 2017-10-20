@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 // Aller voir
 // https://github.com/eugenp/tutorials/blob/master/junit5/
 
-public class DynamicUnitTestWithTestFactoryTest {
+class DynamicUnitTestWithTestFactoryTest {
 
     @TestFactory
     @DisplayName("FindById - Dynamic Test Generator")
@@ -20,7 +20,6 @@ public class DynamicUnitTestWithTestFactoryTest {
         return Stream.of(ids).map(id -> DynamicTest.dynamicTest("DynamicTest: Find by ID " + id, () -> {
             DumbClass person = new DumbClass(id);
             Assertions.assertNotNull(person);
-            int index = id.intValue() - 1;
             Assertions.assertEquals(person.myMethod(), "toto");
         }));
     }

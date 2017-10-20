@@ -1,5 +1,7 @@
 package com.bisam;
 
+import org.junit.platform.engine.discovery.DiscoverySelectors;
+import org.junit.platform.launcher.EngineFilter;
 import org.junit.platform.launcher.Launcher;
 import org.junit.platform.launcher.LauncherDiscoveryRequest;
 import org.junit.platform.launcher.TestExecutionListener;
@@ -7,19 +9,24 @@ import org.junit.platform.launcher.core.LauncherDiscoveryRequestBuilder;
 import org.junit.platform.launcher.core.LauncherFactory;
 import org.junit.platform.launcher.listeners.SummaryGeneratingListener;
 
-import static org.junit.platform.engine.discovery.ClassNameFilter.includeClassNamePatterns;
-import static org.junit.platform.engine.discovery.DiscoverySelectors.selectClass;
-import static org.junit.platform.engine.discovery.DiscoverySelectors.selectPackage;
+import java.io.PrintWriter;
 
+/**
+ * Classe utilitaire pour lancer facilement les TestEngine ET debugger
+ */
 public class BisamLauncherMain {
     public static void main(String[] args) {
         LauncherDiscoveryRequest request = LauncherDiscoveryRequestBuilder.request()
                 .selectors(
-                        selectPackage("com.bisam"),
-                        selectClass(SimpleUnitTestWithLambdaTest.class)
+                        DiscoverySelectors.selectFile(
+                                "D:\\Dev\\env\\sideprojects\\junit5TestProject\\sampleJunit5Test\\src\\test\\java\\com\\bisam\\testGipsHistorical.xml")
+//                        selectPackage("com.bisam"),
+//                        selectClass(SimpleUnitTestWithLambdaTest.class)
                 )
                 .filters(
-                        includeClassNamePatterns(".*Lambda")
+                        EngineFilter.includeEngines("bisam-funtional-tests"),
+                        EngineFilter.excludeEngines("ice-cream-machine")
+//                        includeClassNamePatterns(".*Lambda")
                 )
                 .build();
 
@@ -31,8 +38,7 @@ public class BisamLauncherMain {
 
         launcher.execute(request);
 
-        System.out.println("((SummaryGeneratingListener)listener).getSummary() = "
-                + ((SummaryGeneratingListener) listener).getSummary().getTestsSucceededCount());
+        ((SummaryGeneratingListener) listener).getSummary().printTo(new PrintWriter(System.out));
     }
 
 }

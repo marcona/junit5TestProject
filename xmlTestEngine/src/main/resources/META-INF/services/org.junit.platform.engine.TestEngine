@@ -1,2 +1,2 @@
-ice.cream.Machine
-#com.bisam.engine.MyTestEngine
+#ice.cream.Machine
+com.bisam.engine.XmlTestEngine

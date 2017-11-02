@@ -1,11 +1,11 @@
-package com.spike.engine;
+package com.spike;
 
 
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
-class MockXmlTestCase {
+class FailingUnitTest {
 
     @Test
     void testDoIt() throws Exception {

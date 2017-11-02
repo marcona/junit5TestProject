@@ -10,9 +10,11 @@ import org.xml.sax.Attributes;
 
 public class XmlTestRootNode extends DefaultXmlNode {
     private final EngineDescriptor parentEngineDescriptor;
+    private final String fileName;
 
-    XmlTestRootNode(EngineDescriptor engineDescriptor) {
+    XmlTestRootNode(EngineDescriptor engineDescriptor, String name) {
         parentEngineDescriptor = engineDescriptor;
+        fileName = name;
     }
 
     public XmlNode getSubNode(String childName, Attributes attributes) {
@@ -23,7 +25,7 @@ public class XmlTestRootNode extends DefaultXmlNode {
             return new XmlTestNode(attributes, parentEngineDescriptor, 0);
         }
         if ("testSuite".equals(childName)) {
-            return new XmlTestSuiteNode(attributes, parentEngineDescriptor);
+            return new XmlTestSuiteNode(attributes, parentEngineDescriptor, fileName);
         }
         return super.getSubNode(childName, attributes);
     }
@@ -47,8 +49,12 @@ public class XmlTestRootNode extends DefaultXmlNode {
             String testName = XmlUtils.getAttrValue("name", xmlAttrs);
             String updatedDomain = XmlUtils.getAttrValue("domain", xmlAttrs, "defaultDomain");
 
-            parentEngineDescriptor.addChild(
-                    new XmlTestDescriptor(parentEngineDescriptor.getUniqueId(), cpt, testName + updatedDomain));
+            boolean disabled = XmlUtils.getBooleanAttrValue("disabled", xmlAttrs, false);
+
+            if (!disabled) {
+                parentEngineDescriptor.addChild(
+                        new XmlTestDescriptor(parentEngineDescriptor.getUniqueId(), cpt, testName));
+            }
         }
 
         @Override
@@ -65,16 +71,16 @@ public class XmlTestRootNode extends DefaultXmlNode {
         private final String name;
         private final String domain;
 
-        XmlTestSuiteNode(Attributes xmlAttrs, EngineDescriptor parentEngineDescriptor) {
+        XmlTestSuiteNode(Attributes xmlAttrs, EngineDescriptor parentEngineDescriptor, String fileName) {
             name = getAttrValue("name", xmlAttrs, "");
             domain = getAttrValue("domain", xmlAttrs, DEFAULT_DOMAIN);
 
-            suiteDescriptor = new EngineDescriptor(parentEngineDescriptor.getUniqueId().append("domain", domain), getTestSuiteDisplayName());
+            suiteDescriptor = new EngineDescriptor(parentEngineDescriptor.getUniqueId().append("domain", domain), getTestSuiteDisplayName(fileName));
             parentEngineDescriptor.addChild(suiteDescriptor);
         }
 
-        private String getTestSuiteDisplayName() {
-            return "[" + domain + "] " + name;
+        private String getTestSuiteDisplayName(String fileName) {
+            return "[" + domain + "] " + name + " (" + fileName + ")";
         }
 
         public XmlNode getSubNode(String tagName, Attributes xmlAttrs) {

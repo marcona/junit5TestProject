@@ -16,6 +16,7 @@ import java.io.FileReader;
 import java.util.List;
 
 class XmlTestDiscoverer {
+    static final String PATHNAME = "D:\\Dev\\env\\sideprojects\\junit5TestProject\\sampleJunit5Test\\src\\test\\java\\com\\spike\\testGipsHistorical.xml";
 
     TestDescriptor discover(EngineDiscoveryRequest engineDiscoveryRequest, UniqueId uniqueId) {
         EngineDescriptor engineDescriptor = new EngineDescriptor(uniqueId, "JUnit For Fonctional tests");
@@ -26,7 +27,7 @@ class XmlTestDiscoverer {
             discoverFromFile(engineDescriptor, fileSelector.getFile());
         } else {
             //HACK on ne sait pas encore recuperer les resources depuis un package ...
-            discoverFromFile(engineDescriptor, new File("D:\\Dev\\env\\sideprojects\\junit5TestProject\\sampleJunit5Test\\src\\test\\java\\com\\spike\\testGipsHistorical.xml"));
+            discoverFromFile(engineDescriptor, new File(PATHNAME));
         }
         return engineDescriptor;
     }
@@ -34,7 +35,7 @@ class XmlTestDiscoverer {
     private void discoverFromFile(EngineDescriptor engineDescriptor, File file) {
         try {
             SaxStackParser.parse(new SAXParser(),
-                    new XmlTestRootNode(engineDescriptor),
+                    new XmlTestRootNode(engineDescriptor, file.getName()),
                     new BufferedReader(new FileReader(file)));
         } catch (ExceptionHolder exceptionHolder) {
             throw new RuntimeException(exceptionHolder.getInner());

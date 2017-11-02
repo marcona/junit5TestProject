@@ -18,10 +18,10 @@ class RunnerExecutor {
     }
 
     void execute(TestDescriptor runnerTestDescriptor) {
-        System.out.println("runnerTestDescriptor = " + runnerTestDescriptor);
         engineExecutionListener.executionStarted(runnerTestDescriptor);
+
         if (nbExecutions == 1) {
-            engineExecutionListener.executionFinished(runnerTestDescriptor, failed(new AssertionError("toto")));
+            engineExecutionListener.executionFinished(runnerTestDescriptor, failed(new AssertionError("Fake assertion Error on second test (to test re-run failed tests)")));
         } else {
             engineExecutionListener.executionFinished(runnerTestDescriptor, successful());
         }

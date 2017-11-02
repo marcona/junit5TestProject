@@ -1,4 +1,4 @@
-package com.spike;
+package com.util;
 
 import org.junit.platform.engine.discovery.DiscoverySelectors;
 import org.junit.platform.launcher.EngineFilter;

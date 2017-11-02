@@ -51,10 +51,8 @@ public class XmlTestRootNode extends DefaultXmlNode {
 
             boolean disabled = XmlUtils.getBooleanAttrValue("disabled", xmlAttrs, false);
 
-            if (!disabled) {
-                parentEngineDescriptor.addChild(
-                        new XmlTestDescriptor(parentEngineDescriptor.getUniqueId(), cpt, testName));
-            }
+            parentEngineDescriptor.addChild(
+                    new XmlTestDescriptor(parentEngineDescriptor.getUniqueId(), cpt, testName, disabled));
         }
 
         @Override
@@ -85,22 +83,22 @@ public class XmlTestRootNode extends DefaultXmlNode {
 
         public XmlNode getSubNode(String tagName, Attributes xmlAttrs) {
             if ("systemProperties".equals(tagName)) {
-                System.out.println("TODO systemProperties");
+//                System.out.println("TODO systemProperties");
                 return SilentXmlNode.INSTANCE;
             }
             if ("datasets".equals(tagName)) {
-                System.out.println("TODO datasets");
+//                System.out.println("TODO datasets");
                 return SilentXmlNode.INSTANCE;
             }
             if ("commonInputs".equals(tagName)) {
-                System.out.println("TODO commonInputs");
+//                System.out.println("TODO commonInputs");
                 return SilentXmlNode.INSTANCE;
             }
             if ("test".equals(tagName)) {
                 return new XmlTestNode(xmlAttrs, suiteDescriptor, nbDeclaredTests++);
             }
             if ("commonResults".equals(tagName)) {
-                System.out.println("TODO commonResults");
+//                System.out.println("TODO commonResults");
                 return SilentXmlNode.INSTANCE;
             }
             if ("description".equals(tagName)) {

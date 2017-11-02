@@ -14,8 +14,11 @@ import java.util.List;
 import java.util.Optional;
 
 class XmlTestDescriptor extends AbstractTestDescriptor {
-    XmlTestDescriptor(UniqueId uniqueId, int counter, String displayName) {
+    private final boolean disabled;
+
+    XmlTestDescriptor(UniqueId uniqueId, int counter, String displayName, boolean disabled) {
         super(uniqueId.append("xmlTest", "#" + counter), displayName, buildFileSource(displayName));
+        this.disabled = disabled;
     }
 
     private static TestSource buildFileSource(String displayName) {
@@ -23,12 +26,10 @@ class XmlTestDescriptor extends AbstractTestDescriptor {
     }
 
     private static FilePosition getFilePositionFromName(String displayName) {
-        System.out.println("displayName = " + displayName);
         int lineNumber = 0;
         try {
             List<String> allLines = Files.readAllLines(Paths.get(XmlTestDiscoverer.PATHNAME));
             for (String line : allLines) {
-                System.out.println("line = " + line);
                 lineNumber++;
                 if (line.contains(displayName)) {
                     break;
@@ -43,5 +44,9 @@ class XmlTestDescriptor extends AbstractTestDescriptor {
     @Override
     public Type getType() {
         return Type.TEST;
+    }
+
+    boolean isDisabled() {
+        return disabled;
     }
 }

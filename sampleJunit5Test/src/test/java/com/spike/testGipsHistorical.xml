@@ -430,7 +430,7 @@
     </test>
 
     <test name='two Months - March loaded (Composite AND Portfolio level), April computed from Portfolio Results'
-          disabled='false'>
+          disabled='true'>
         <input>
             <datasetRef id='inputs'>
                 <parameter name='FIRM_LOCKING_DATE' value='31/12/1900'/>

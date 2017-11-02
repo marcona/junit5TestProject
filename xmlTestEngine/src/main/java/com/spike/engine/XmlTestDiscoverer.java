@@ -1,6 +1,7 @@
 package com.spike.engine;
 
 import com.sun.org.apache.xerces.internal.parsers.SAXParser;
+import org.junit.platform.commons.util.PackageUtils;
 import org.junit.platform.engine.EngineDiscoveryRequest;
 import org.junit.platform.engine.TestDescriptor;
 import org.junit.platform.engine.UniqueId;
